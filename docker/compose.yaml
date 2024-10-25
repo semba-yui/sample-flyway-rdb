@@ -5,11 +5,22 @@ services:
     volumes:
       - ./flyway/sql/:/flyway/sql/
       - ./flyway/conf/:/flyway/conf/
+      - ./flyway/driver/:/flyway/driver/
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+
   db:
     image: postgis/postgis:17-3.4
+    restart: always
     ports:
       - "5432:5432"
     environment:
+      - TZ=Asia/Tokyo
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    healthcheck:
+      test: "psql -U postgres"
+      interval: 3s
+      timeout: 3s
+      retries: 5

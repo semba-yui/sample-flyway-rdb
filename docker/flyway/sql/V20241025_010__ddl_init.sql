@@ -140,9 +140,7 @@ CREATE INDEX store_valid_from_valid_to_index
 
 CREATE TABLE schema1."order"
 (
-    order_id                BIGINT GENERATED ALWAYS AS IDENTITY
-        CONSTRAINT order_pk
-            PRIMARY KEY,
+    order_id                BIGINT GENERATED ALWAYS AS IDENTITY,
     user_id                 BIGINT                              NOT NULL
         CONSTRAINT user_id_fk
             REFERENCES schema1."user",
@@ -157,7 +155,8 @@ CREATE TABLE schema1."order"
     payment_status          VARCHAR(20)                         NOT NULL,
     payment_date            TIMESTAMP,
     created_at              TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updated_at              TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+    updated_at              TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    CONSTRAINT order_pk PRIMARY KEY (order_id, order_date)
 ) PARTITION BY RANGE (order_date);
 
 COMMENT ON TABLE schema1."order" IS '注文';
@@ -287,12 +286,8 @@ CREATE INDEX product_valid_from_valid_to_index
 
 CREATE TABLE schema1.order_item
 (
-    order_item_id BIGINT GENERATED ALWAYS AS IDENTITY
-        CONSTRAINT order_item_pk
-            PRIMARY KEY,
-    order_id      BIGINT                              NOT NULL
-        CONSTRAINT order_id_fk
-            REFERENCES schema1."order",
+    order_item_id BIGINT GENERATED ALWAYS AS IDENTITY,
+    order_id      BIGINT                              NOT NULL,
     product_id    BIGINT                              NOT NULL
         CONSTRAINT product_id_fk
             REFERENCES schema1.product,
@@ -300,7 +295,12 @@ CREATE TABLE schema1.order_item
     quantity      INTEGER                             NOT NULL,
     price         NUMERIC(10, 2)                      NOT NULL,
     created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updated_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+    updated_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    CONSTRAINT order_item_pk
+        PRIMARY KEY (order_item_id, order_date),
+    CONSTRAINT order_id_fk
+        FOREIGN KEY (order_id, order_date)
+            REFERENCES schema1."order" (order_id, order_date)
 ) PARTITION BY RANGE (order_date);
 
 COMMENT ON TABLE schema1.order_item IS '注文商品';

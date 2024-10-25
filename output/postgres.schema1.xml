@@ -1,0 +1,878 @@
+<?xml version="1.0" encoding="UTF-8"?><database name="postgres" schema="schema1" type="PostgreSQL - 17.0 (Debian 17.0-1.pgdg110+1)">
+   <tables>
+      <table name="cart" remarks="カート" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="cart_id" nullable="false" remarks="カートiD" size="19" type="int8" typeCode="-5">
+            <child column="cart_id" foreignKey="cart_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="cart_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="user_id" nullable="true" remarks="ユーザーID" size="19" type="int8" typeCode="-5">
+            <parent column="user_id" foreignKey="cart_user_user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="user"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="2" name="created_at" nullable="false" remarks="作成日時" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="3" name="updated_at" nullable="false" remarks="更新日時" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="cart_id" sequenceNumberInPK="1"/>
+         <index name="cart_pk" unique="true">
+            <column ascending="true" name="cart_id"/>
+         </index>
+      </table>
+      <table name="cart_item" remarks="カート商品" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="cart_item_id" nullable="false" remarks="カート商品ID" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="cart_id" nullable="false" remarks="カートID" size="10" type="int4" typeCode="4">
+            <parent column="cart_id" foreignKey="cart_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="cart"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="product_id" nullable="false" remarks="商品ID" size="10" type="int4" typeCode="4">
+            <parent column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="quantity" nullable="false" remarks="商品数量" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="4" name="created_at" nullable="false" remarks="作成日時" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="5" name="updated_at" nullable="false" remarks="更新日時" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="cart_item_id" sequenceNumberInPK="1"/>
+         <index name="cart_item_pk" unique="true">
+            <column ascending="true" name="cart_item_id"/>
+         </index>
+      </table>
+      <table name="flyway_schema_history" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="installed_rank" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="version" nullable="true" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="false" remarks="" size="200" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="type" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="script" nullable="false" remarks="" size="1000" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="checksum" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="installed_by" nullable="false" remarks="" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="now()" digits="6" id="7" name="installed_on" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="execution_time" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="success" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
+         <primaryKey column="installed_rank" sequenceNumberInPK="1"/>
+         <index name="flyway_schema_history_pk" unique="true">
+            <column ascending="true" name="installed_rank"/>
+         </index>
+         <index name="flyway_schema_history_s_idx" unique="false">
+            <column ascending="true" name="success"/>
+         </index>
+      </table>
+      <table name="order" remarks="注文" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_id" nullable="false" remarks="注文ID" size="19" type="int8" typeCode="-5">
+            <child column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+            <child column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_01"/>
+            <child column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_02"/>
+            <child column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_03"/>
+            <child column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_04"/>
+            <child column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_05"/>
+            <child column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_06"/>
+            <child column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_07"/>
+            <child column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_08"/>
+            <child column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_09"/>
+            <child column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_10"/>
+            <child column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_11"/>
+            <child column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_12"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="user_id" nullable="false" remarks="ユーザーID" size="19" type="int8" typeCode="-5">
+            <parent column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="user"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="2" name="total_price" nullable="false" remarks="合計金額" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="status" nullable="false" remarks="ステータス" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="4" name="order_date" nullable="false" remarks="注文日時" size="29" type="timestamp" typeCode="93">
+            <child column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+            <child column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_01"/>
+            <child column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_02"/>
+            <child column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_03"/>
+            <child column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_04"/>
+            <child column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_05"/>
+            <child column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_06"/>
+            <child column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_07"/>
+            <child column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_08"/>
+            <child column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_09"/>
+            <child column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_10"/>
+            <child column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_11"/>
+            <child column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_12"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="shipping_prefecture" nullable="false" remarks="配送先都道府県" size="5" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="shipping_city" nullable="false" remarks="配送先市区町村" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="shipping_street_address" nullable="false" remarks="配送先番地" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="shipping_building_name" nullable="true" remarks="配送先建物名" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="payment_method" nullable="false" remarks="支払いステータス" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="payment_status" nullable="false" remarks="支払いステータス" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="11" name="payment_date" nullable="true" remarks="支払い日時" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="12" name="created_at" nullable="false" remarks="作成日時" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="13" name="updated_at" nullable="false" remarks="更新日時" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_pk" unique="true">
+            <column ascending="true" name="order_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_2024_01" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <child column="order_id" foreignKey="order_item_order_id_order_date_fkey" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="user_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="user"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="2" name="total_price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="4" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <child column="order_date" foreignKey="order_item_order_id_order_date_fkey" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="shipping_prefecture" nullable="false" remarks="" size="5" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="shipping_city" nullable="false" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="shipping_street_address" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="shipping_building_name" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="payment_method" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="payment_status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="11" name="payment_date" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="12" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="13" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_2024_01_pkey" unique="true">
+            <column ascending="true" name="order_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_2024_02" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <child column="order_id" foreignKey="order_item_order_id_order_date_fkey1" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="user_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="user"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="2" name="total_price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="4" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <child column="order_date" foreignKey="order_item_order_id_order_date_fkey1" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="shipping_prefecture" nullable="false" remarks="" size="5" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="shipping_city" nullable="false" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="shipping_street_address" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="shipping_building_name" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="payment_method" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="payment_status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="11" name="payment_date" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="12" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="13" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_2024_02_pkey" unique="true">
+            <column ascending="true" name="order_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_2024_03" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <child column="order_id" foreignKey="order_item_order_id_order_date_fkey2" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="user_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="user"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="2" name="total_price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="4" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <child column="order_date" foreignKey="order_item_order_id_order_date_fkey2" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="shipping_prefecture" nullable="false" remarks="" size="5" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="shipping_city" nullable="false" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="shipping_street_address" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="shipping_building_name" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="payment_method" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="payment_status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="11" name="payment_date" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="12" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="13" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_2024_03_pkey" unique="true">
+            <column ascending="true" name="order_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_2024_04" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <child column="order_id" foreignKey="order_item_order_id_order_date_fkey3" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="user_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="user"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="2" name="total_price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="4" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <child column="order_date" foreignKey="order_item_order_id_order_date_fkey3" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="shipping_prefecture" nullable="false" remarks="" size="5" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="shipping_city" nullable="false" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="shipping_street_address" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="shipping_building_name" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="payment_method" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="payment_status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="11" name="payment_date" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="12" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="13" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_2024_04_pkey" unique="true">
+            <column ascending="true" name="order_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_2024_05" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <child column="order_id" foreignKey="order_item_order_id_order_date_fkey4" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="user_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="user"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="2" name="total_price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="4" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <child column="order_date" foreignKey="order_item_order_id_order_date_fkey4" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="shipping_prefecture" nullable="false" remarks="" size="5" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="shipping_city" nullable="false" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="shipping_street_address" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="shipping_building_name" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="payment_method" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="payment_status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="11" name="payment_date" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="12" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="13" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_2024_05_pkey" unique="true">
+            <column ascending="true" name="order_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_2024_06" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <child column="order_id" foreignKey="order_item_order_id_order_date_fkey5" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="user_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="user"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="2" name="total_price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="4" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <child column="order_date" foreignKey="order_item_order_id_order_date_fkey5" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="shipping_prefecture" nullable="false" remarks="" size="5" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="shipping_city" nullable="false" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="shipping_street_address" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="shipping_building_name" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="payment_method" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="payment_status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="11" name="payment_date" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="12" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="13" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_2024_06_pkey" unique="true">
+            <column ascending="true" name="order_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_2024_07" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <child column="order_id" foreignKey="order_item_order_id_order_date_fkey6" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="user_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="user"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="2" name="total_price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="4" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <child column="order_date" foreignKey="order_item_order_id_order_date_fkey6" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="shipping_prefecture" nullable="false" remarks="" size="5" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="shipping_city" nullable="false" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="shipping_street_address" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="shipping_building_name" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="payment_method" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="payment_status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="11" name="payment_date" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="12" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="13" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_2024_07_pkey" unique="true">
+            <column ascending="true" name="order_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_2024_08" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <child column="order_id" foreignKey="order_item_order_id_order_date_fkey7" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="user_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="user"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="2" name="total_price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="4" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <child column="order_date" foreignKey="order_item_order_id_order_date_fkey7" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="shipping_prefecture" nullable="false" remarks="" size="5" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="shipping_city" nullable="false" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="shipping_street_address" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="shipping_building_name" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="payment_method" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="payment_status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="11" name="payment_date" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="12" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="13" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_2024_08_pkey" unique="true">
+            <column ascending="true" name="order_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_2024_09" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <child column="order_id" foreignKey="order_item_order_id_order_date_fkey8" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="user_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="user"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="2" name="total_price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="4" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <child column="order_date" foreignKey="order_item_order_id_order_date_fkey8" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="shipping_prefecture" nullable="false" remarks="" size="5" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="shipping_city" nullable="false" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="shipping_street_address" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="shipping_building_name" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="payment_method" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="payment_status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="11" name="payment_date" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="12" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="13" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_2024_09_pkey" unique="true">
+            <column ascending="true" name="order_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_2024_10" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <child column="order_id" foreignKey="order_item_order_id_order_date_fkey9" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="user_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="user"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="2" name="total_price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="4" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <child column="order_date" foreignKey="order_item_order_id_order_date_fkey9" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="shipping_prefecture" nullable="false" remarks="" size="5" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="shipping_city" nullable="false" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="shipping_street_address" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="shipping_building_name" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="payment_method" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="payment_status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="11" name="payment_date" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="12" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="13" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_2024_10_pkey" unique="true">
+            <column ascending="true" name="order_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_2024_11" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <child column="order_id" foreignKey="order_item_order_id_order_date_fkey10" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="user_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="user"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="2" name="total_price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="4" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <child column="order_date" foreignKey="order_item_order_id_order_date_fkey10" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="shipping_prefecture" nullable="false" remarks="" size="5" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="shipping_city" nullable="false" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="shipping_street_address" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="shipping_building_name" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="payment_method" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="payment_status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="11" name="payment_date" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="12" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="13" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_2024_11_pkey" unique="true">
+            <column ascending="true" name="order_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_2024_12" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <child column="order_id" foreignKey="order_item_order_id_order_date_fkey11" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="user_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="user"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="2" name="total_price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="4" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <child column="order_date" foreignKey="order_item_order_id_order_date_fkey11" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="shipping_prefecture" nullable="false" remarks="" size="5" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="shipping_city" nullable="false" remarks="" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="shipping_street_address" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="shipping_building_name" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="payment_method" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="payment_status" nullable="false" remarks="" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="11" name="payment_date" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="12" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="13" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_2024_12_pkey" unique="true">
+            <column ascending="true" name="order_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_item" remarks="注文商品" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_item_id" nullable="false" remarks="注文商品ID" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="order_id" nullable="false" remarks="注文ID" size="19" type="int8" typeCode="-5">
+            <parent column="order_id" foreignKey="order_item_order_id_order_date_fkey1" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_02"/>
+            <parent column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+            <parent column="order_id" foreignKey="order_item_order_id_order_date_fkey10" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_11"/>
+            <parent column="order_id" foreignKey="order_item_order_id_order_date_fkey7" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_08"/>
+            <parent column="order_id" foreignKey="order_item_order_id_order_date_fkey3" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_04"/>
+            <parent column="order_id" foreignKey="order_item_order_id_order_date_fkey8" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_09"/>
+            <parent column="order_id" foreignKey="order_item_order_id_order_date_fkey" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_01"/>
+            <parent column="order_id" foreignKey="order_item_order_id_order_date_fkey11" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_12"/>
+            <parent column="order_id" foreignKey="order_item_order_id_order_date_fkey2" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_03"/>
+            <parent column="order_id" foreignKey="order_item_order_id_order_date_fkey6" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_07"/>
+            <parent column="order_id" foreignKey="order_item_order_id_order_date_fkey9" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_10"/>
+            <parent column="order_id" foreignKey="order_item_order_id_order_date_fkey4" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_05"/>
+            <parent column="order_id" foreignKey="order_item_order_id_order_date_fkey5" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_06"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="product_id" nullable="false" remarks="商品ID" size="19" type="int8" typeCode="-5">
+            <parent column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="3" name="order_date" nullable="false" remarks="注文日時" size="29" type="timestamp" typeCode="93">
+            <parent column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+            <parent column="order_date" foreignKey="order_item_order_id_order_date_fkey5" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_06"/>
+            <parent column="order_date" foreignKey="order_item_order_id_order_date_fkey3" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_04"/>
+            <parent column="order_date" foreignKey="order_item_order_id_order_date_fkey2" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_03"/>
+            <parent column="order_date" foreignKey="order_item_order_id_order_date_fkey6" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_07"/>
+            <parent column="order_date" foreignKey="order_item_order_id_order_date_fkey7" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_08"/>
+            <parent column="order_date" foreignKey="order_item_order_id_order_date_fkey8" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_09"/>
+            <parent column="order_date" foreignKey="order_item_order_id_order_date_fkey10" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_11"/>
+            <parent column="order_date" foreignKey="order_item_order_id_order_date_fkey4" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_05"/>
+            <parent column="order_date" foreignKey="order_item_order_id_order_date_fkey11" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_12"/>
+            <parent column="order_date" foreignKey="order_item_order_id_order_date_fkey" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_01"/>
+            <parent column="order_date" foreignKey="order_item_order_id_order_date_fkey9" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_10"/>
+            <parent column="order_date" foreignKey="order_item_order_id_order_date_fkey1" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_02"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="quantity" nullable="false" remarks="注文数" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="5" name="price" nullable="false" remarks="注文時の商品の単価" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="6" name="created_at" nullable="false" remarks="作成日時" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="7" name="updated_at" nullable="false" remarks="更新日時" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_item_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_item_pk" unique="true">
+            <column ascending="true" name="order_item_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_item_2024_01" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_item_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="product_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="3" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <parent column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="quantity" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="5" name="price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="6" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_item_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_item_2024_01_pkey" unique="true">
+            <column ascending="true" name="order_item_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_item_2024_02" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_item_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="product_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="3" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <parent column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="quantity" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="5" name="price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="6" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_item_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_item_2024_02_pkey" unique="true">
+            <column ascending="true" name="order_item_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_item_2024_03" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_item_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="product_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="3" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <parent column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="quantity" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="5" name="price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="6" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_item_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_item_2024_03_pkey" unique="true">
+            <column ascending="true" name="order_item_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_item_2024_04" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_item_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="product_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="3" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <parent column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="quantity" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="5" name="price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="6" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_item_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_item_2024_04_pkey" unique="true">
+            <column ascending="true" name="order_item_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_item_2024_05" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_item_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="product_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="3" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <parent column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="quantity" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="5" name="price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="6" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_item_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_item_2024_05_pkey" unique="true">
+            <column ascending="true" name="order_item_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_item_2024_06" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_item_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="product_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="3" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <parent column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="quantity" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="5" name="price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="6" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_item_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_item_2024_06_pkey" unique="true">
+            <column ascending="true" name="order_item_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_item_2024_07" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_item_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="product_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="3" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <parent column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="quantity" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="5" name="price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="6" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_item_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_item_2024_07_pkey" unique="true">
+            <column ascending="true" name="order_item_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_item_2024_08" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_item_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="product_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="3" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <parent column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="quantity" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="5" name="price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="6" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_item_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_item_2024_08_pkey" unique="true">
+            <column ascending="true" name="order_item_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_item_2024_09" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_item_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="product_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="3" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <parent column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="quantity" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="5" name="price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="6" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_item_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_item_2024_09_pkey" unique="true">
+            <column ascending="true" name="order_item_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_item_2024_10" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_item_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="product_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="3" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <parent column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="quantity" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="5" name="price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="6" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_item_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_item_2024_10_pkey" unique="true">
+            <column ascending="true" name="order_item_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_item_2024_11" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_item_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="product_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="3" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <parent column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="quantity" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="5" name="price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="6" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_item_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_item_2024_11_pkey" unique="true">
+            <column ascending="true" name="order_item_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="order_item_2024_12" remarks="" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="order_item_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="order_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="order_id" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="product_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="3" name="order_date" nullable="false" remarks="" size="29" type="timestamp" typeCode="93">
+            <parent column="order_date" foreignKey="order_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="quantity" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="5" name="price" nullable="false" remarks="" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="6" name="created_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="order_item_id" sequenceNumberInPK="1"/>
+         <primaryKey column="order_date" sequenceNumberInPK="2"/>
+         <index name="order_item_2024_12_pkey" unique="true">
+            <column ascending="true" name="order_item_id"/>
+            <column ascending="true" name="order_date"/>
+         </index>
+      </table>
+      <table name="product" remarks="商品" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="product_id" nullable="false" remarks="商品ID" size="19" type="int8" typeCode="-5">
+            <child column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="cart_item"/>
+            <child column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item"/>
+            <child column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_01"/>
+            <child column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_02"/>
+            <child column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_03"/>
+            <child column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_04"/>
+            <child column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_05"/>
+            <child column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_06"/>
+            <child column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_07"/>
+            <child column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_08"/>
+            <child column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_09"/>
+            <child column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_10"/>
+            <child column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_11"/>
+            <child column="product_id" foreignKey="product_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_item_2024_12"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="商品名" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="false" remarks="商品の説明" size="1000" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="sku" nullable="false" remarks="SKU" size="20" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="product_brand_id" nullable="false" remarks="ブランドID" size="19" type="int8" typeCode="-5">
+            <parent column="product_brand_id" foreignKey="product_brand_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="product_brand"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="product_category_id" nullable="false" remarks="カテゴリID" size="19" type="int8" typeCode="-5">
+            <parent column="product_category_id" foreignKey="product_category_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="product_category"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="6" name="price" nullable="false" remarks="商品価格" size="10" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="unit" nullable="false" remarks="販売単位" size="10" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="8" name="valid_from" nullable="false" remarks="販売開始日時" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="9" name="valid_to" nullable="false" remarks="販売終了日時" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="10" name="deleted_at" nullable="true" remarks="削除日時" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="11" name="created_at" nullable="false" remarks="作成日時" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="12" name="update_at" nullable="false" remarks="更新日時" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="product_id" sequenceNumberInPK="1"/>
+         <index name="product_pk" unique="true">
+            <column ascending="true" name="product_id"/>
+         </index>
+         <index name="product_valid_from_valid_to_index" unique="false">
+            <column ascending="true" name="valid_from"/>
+            <column ascending="true" name="valid_to"/>
+         </index>
+      </table>
+      <table name="product_brand" remarks="商品ブランド" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="product_brand_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <child column="product_brand_id" foreignKey="product_brand_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="ブランド名" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="false" remarks="ブランド説明" size="1000" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="deleted_at" nullable="true" remarks="削除日時" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="4" name="created_at" nullable="false" remarks="作成日時" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="5" name="updated_at" nullable="false" remarks="更新日時" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="product_brand_id" sequenceNumberInPK="1"/>
+         <index name="product_brand_pk" unique="true">
+            <column ascending="true" name="product_brand_id"/>
+         </index>
+      </table>
+      <table name="product_category" remarks="商品カテゴリ" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="product_category_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <child column="product_category_id" foreignKey="product_category_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="product"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="カテゴリー名" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="description" nullable="false" remarks="カテゴリー説明" size="1000" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="deleted_at" nullable="true" remarks="削除日時" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="4" name="created_at" nullable="false" remarks="作成日時" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="5" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="product_category_id" sequenceNumberInPK="1"/>
+         <index name="product_category_pk" unique="true">
+            <column ascending="true" name="product_category_id"/>
+         </index>
+      </table>
+      <table name="store" remarks="店舗" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="store_id" nullable="false" remarks="店舗ID" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="true" remarks="店舗名" size="100" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="valid_from" nullable="false" remarks="開始日時" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="valid_to" nullable="false" remarks="終了日時" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="deleted_at" nullable="true" remarks="削除日時" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="5" name="created_at" nullable="false" remarks="作成日時" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="6" name="updated_at" nullable="false" remarks="更新日時" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="store_id" sequenceNumberInPK="1"/>
+         <index name="store_pk" unique="true">
+            <column ascending="true" name="store_id"/>
+         </index>
+         <index name="store_valid_from_valid_to_index" unique="false">
+            <column ascending="true" name="valid_from"/>
+            <column ascending="true" name="valid_to"/>
+         </index>
+      </table>
+      <table name="user" remarks="ユーザー" schema="schema1" type="TABLE">
+         <column autoUpdated="true" defaultValue="null" digits="0" id="0" name="user_id" nullable="false" remarks="ユーザーID" size="19" type="int8" typeCode="-5">
+            <child column="user_id" foreignKey="cart_user_user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="cart"/>
+            <child column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order"/>
+            <child column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_01"/>
+            <child column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_02"/>
+            <child column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_03"/>
+            <child column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_04"/>
+            <child column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_05"/>
+            <child column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_06"/>
+            <child column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_07"/>
+            <child column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_08"/>
+            <child column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_09"/>
+            <child column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_10"/>
+            <child column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_11"/>
+            <child column="user_id" foreignKey="user_id_fk" implied="false" onDeleteCascade="false" schema="schema1" table="order_2024_12"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="ユーザー名" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="email" nullable="false" remarks="メールアドレス" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="password_hash" nullable="false" remarks="パスワード（ハッシュ値）" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="prefecture" nullable="true" remarks="都道府県" size="5" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="city" nullable="true" remarks="市区町村" size="50" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="street_address" nullable="true" remarks="番地" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="building_name" nullable="true" remarks="建物名/アパート名" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="postal_code" nullable="true" remarks="郵便番号（ハイフン付）" size="8" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="phone_number" nullable="true" remarks="電話番号" size="11" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="10" name="deleted_at" nullable="true" remarks="削除日時" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="11" name="created_at" nullable="false" remarks="登録日時" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="CURRENT_TIMESTAMP" digits="6" id="12" name="updated_at" nullable="false" remarks="更新日時" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="user_id" sequenceNumberInPK="1"/>
+         <index name="user_pk" unique="true">
+            <column ascending="true" name="user_id"/>
+         </index>
+         <index name="user_email_unique_index" unique="true">
+            <column ascending="true" name="email"/>
+         </index>
+         <index name="user_phone_number_unique_index" unique="true">
+            <column ascending="true" name="phone_number"/>
+         </index>
+      </table>
+   </tables>
+</database>
