@@ -1,0 +1,18 @@
+# More information on the parameters can be found here: https://documentation.red-gate.com/flyway/flyway-cli-and-api/configuration/parameters
+
+[flyway]
+# It is recommended to configure environment as a commandline argument. This allows using different environments depending on the caller.
+environment = "default"
+locations = ["filesystem:/flyway/sql"]
+
+[environments.default]
+url = "jdbc:postgresql://db:5432/postgres?connectTimeout=120"
+user = "postgres"
+password = "postgres"
+connectRetries = 2
+connectRetriesInterval = 5
+createSchemas = true
+schemas = ["schema1", "schema2"]
+
+#[flyway.check]
+# buildEnvironment = "build"

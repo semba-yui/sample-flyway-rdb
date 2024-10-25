@@ -1,0 +1,15 @@
+services:
+  flyway:
+    image: flyway/flyway
+    command: -connectRetries=60 repair migrate info
+    volumes:
+      - ./flyway/sql/:/flyway/sql/
+      - ./flyway/conf/:/flyway/conf/
+    depends_on:
+      - db
+  db:
+    image: postgis/postgis:17-3.4
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
